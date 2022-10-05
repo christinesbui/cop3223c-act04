@@ -1,0 +1,82 @@
+/* Christine Bui
+11/06/2020
+COP 3223C 
+Lecture 4 Assignment */
+
+// Part A
+#include <stdio.h>
+
+double average(int array[], int length) {       // finds the sum of the array and then divides by length of array
+      double sum=0; 
+      int i;
+      for(i=0; i<length; i++) {
+          sum+=array[i]; 
+      }
+      return sum/length; // returns the average
+      }
+
+int main() {
+      int parameter[] = {78, 90, 56, 99, 88, 68, 92};         // demonstrates that this works by using these values 
+      double result = average(parameter, 7); 
+      printf("The average of the array is %lf\n",result); // prints the average of the values in the array
+      return 0;
+      }
+      
+// Part B
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+char getGradeLetter(double grade) {         // compares grade and return a char based on value
+        if(grade>=90 && grade<=100){
+                return 'A';
+        }else if(grade>=80 && grade<90){
+                return 'B';
+        }else if(grade>=70 && grade<80){
+                return 'C';
+        }else if(grade>=60 && grade<70){
+                return 'D';
+        }else if(grade>=0 && grade<60){
+                return 'F';
+        }else{
+                return '!';               // returns an error code if outside range
+        }
+}
+
+int main() {
+      srand((unsigned)time(NULL));
+      int i; 
+      double num; 
+
+      for(i=0;i<20;i++) {
+              num = (double)rand()/(double)RAND_MAX*100;          // generates a random number and stores it
+              printf("%.2lf is a %c\n",num,getGradeLetter(num));  // prints the number and corresponding grade letter
+      }
+      return 0; // decides what letter to return
+}
+
+// Part C
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+int max(int a, int b, int c) {          // int a is the first number, int b is the second number, and int c is the third number
+        if(a>b&&a>c)                    // checks to see if a is the greatest
+                return a;
+        else if(b>c)                    // checks to see if b is greater than c
+                return b;
+        else                            // if a or b are not the greatest, it must be c
+                return c;
+        }
+
+int main() {
+        int a,b,c,i;                    // declares three numbers and counter variable
+        for(i=0;i<20;i++) {
+                // generates random numbers from [0,100)
+                a = rand()%100;
+                b = rand()%100;
+                c = rand()%100;
+                printf("Out of %d, %d and %d, %d is the max.\n",a,b,c,max(a,b,c));
+        }
+        return 0;
+}
